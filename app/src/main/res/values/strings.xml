@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Reminder Beta</string>
-    <string name="search_title">Поиск</string>
+    <string name="search_title">Search</string>
     <string name="menu_item_notification">Напоминания</string>
     <string name="view_navigation_open">Открыть</string>
     <string name="view_navigation_close">Закрыть</string>
+
+    <string name="tab_item_history">History</string>
+    <string name="tab_item_ideas">Ideas</string>
+    <string name="tab_item_todo">To Do</string>
+    <string name="tab_item_birthdays">Birthdays</string>
 </resources>
