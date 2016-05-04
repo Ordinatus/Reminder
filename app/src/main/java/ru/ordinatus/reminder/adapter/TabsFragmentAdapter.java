@@ -6,34 +6,33 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import ru.ordinatus.reminder.R;
+import ru.ordinatus.reminder.fragment.AbstractTabFragment;
 import ru.ordinatus.reminder.fragment.BirthdayFragment;
 import ru.ordinatus.reminder.fragment.HistoryFragment;
 import ru.ordinatus.reminder.fragment.IdeasFragment;
 import ru.ordinatus.reminder.fragment.TodoFragment;
 
-public class TabsPagerFragmentAdapter extends FragmentPagerAdapter{
+public class TabsFragmentAdapter extends FragmentPagerAdapter{
 
-    private Map<Integer, Fragment> tabs;
+    private Map<Integer, AbstractTabFragment> tabs;
     private Context context;
 
-    public TabsPagerFragmentAdapter(Context context, FragmentManager fm) {
+    public TabsFragmentAdapter(Context context, FragmentManager fm) {
         super(fm);
         this.context = context;
-        tabs.put(0, HistoryFragment.getInstance(context));
-        tabs.put(1, IdeasFragment.getInstance(context));
-        tabs.put(2, TodoFragment.getInstance(context));
-        tabs.put(3, BirthdayFragment.getInstance(context));
+        initTabsMap(context);
     }
-
 
     @Override
     public CharSequence getPageTitle(int position) {
 
-        return tabs.get(position);
+        return tabs.get(position).getTitle();
     }
+
 
     @Override
     public Fragment getItem(int position) {
@@ -42,6 +41,14 @@ public class TabsPagerFragmentAdapter extends FragmentPagerAdapter{
 
     @Override
     public int getCount() {
-        return tabs.length;
+        return tabs.size();
+    }
+
+    private void initTabsMap(Context context) {
+        tabs = new HashMap<>();
+        tabs.put(0, HistoryFragment.getInstance(context));
+        tabs.put(1, IdeasFragment.getInstance(context));
+        tabs.put(2, TodoFragment.getInstance(context));
+        tabs.put(3, BirthdayFragment.getInstance(context));
     }
 }
